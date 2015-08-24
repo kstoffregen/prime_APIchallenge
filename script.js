@@ -13,11 +13,17 @@ function searchCallback(breed) {
 	$('#content').empty();
 	
 	array.forEach(function(pet){
-		var $p = $('<p>')
-		var $br = $('<br>')
+		var $h3 = $('<h3>');
+		var $p = $('<p>');
+		var $img = $('<img src="'+pet.media.photos.photo[3].$t+'">');
+		$('#content').append($img);
+		$('#content').append($h3);
 		$('#content').append($p);
-		$p.html(pet.name.$t + '<br><br>'+'<img src="'+pet.media.photos.photo[3].$t+'"><br>'+ pet.description.$t);
+		$h3.html(pet.name.$t);
+		$p.html(pet.description.$t);
+		// $p.html(pet.name.$t + '<br><br>'+'<img src="'+pet.media.photos.photo[3].$t+'"><br>'+ pet.description.$t);
 	});
+	return array;
 }
 
 $(document).ready(function() {
@@ -42,7 +48,7 @@ function search(query){
 		dataType: 'jsonp',
 		crossDomain: true,
 		jsonp: 'json_callback',
-		url: 'http://api.petfinder.com/pet.find?format=json&key=' + apikey +'&animal=dog&location='+query+'&count=10&callback=?',
+		url: 'http://api.petfinder.com/pet.find?format=json&key=' + apikey +'&animal=dog&location='+query+'&age=young&count=10&callback=?',
 	}).always(function() {
 			console.log('Ajax attempt complete.');
 		}).done(function(breed, textStatus, jqXHR) {
