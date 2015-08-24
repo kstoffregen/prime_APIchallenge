@@ -7,15 +7,15 @@ var petNames = {};
 
 function searchCallback(breed) {
 	console.log(breed);
-	var content = $('#results');
+
 	var array = [];
 	array = breed.petfinder.pets.pet;
-	$('#appendstuff').empty();
+	$('#content').empty();
 	
 	array.forEach(function(pet){
 		var $p = $('<p>')
 		var $br = $('<br>')
-		$('#appendstuff').append($p);
+		$('#content').append($p);
 		$p.html(pet.name.$t + '<br><br>'+'<img src="'+pet.media.photos.photo[3].$t+'"><br>'+ pet.description.$t);
 	});
 }
